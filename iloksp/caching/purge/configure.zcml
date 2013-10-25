@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="iloksp.caching">
+
+    <!-- purge on content modified -->
+    <subscriber
+        for="Products.CMFCore.interfaces.IContentish
+            zope.lifecycleevent.IObjectModifiedEvent" 
+            handler=".homepage.purge_homepage"/>
+
+    <!-- purge on workflow changes -->
+    <subscriber
+        for="Products.CMFCore.interfaces.IContentish
+            Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".homepage.purge_homepage"/>
+
+</configure>

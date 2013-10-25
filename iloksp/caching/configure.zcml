@@ -12,6 +12,9 @@
     i18n_domain="iloksp.caching">
 
     <includeDependencies package="." />
+    <include package="z3c.caching" file="meta.zcml"/>
+    <include package=".purge"/>
+
     <grok:grok package="." />
     <i18n:registerTranslations directory="locales" />
 
