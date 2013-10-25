@@ -15,4 +15,9 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <adapter   factory=".cachingoperation.IntranetModerateCaching"
+             name="iloksp.caching.intranetModerateCaching" />
+    <utility component=".cachingoperation.IntranetModerateCaching"
+             name="iloksp.caching.intranetModerateCaching" />
+
 </configure>
