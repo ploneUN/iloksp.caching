@@ -39,7 +39,7 @@
 
     <cache:ruleset
         zcml:condition="installed Solgema.fullcalendar"
-        for="Solgema.fullcalendar.browser.views.SolgemaFullcalendarEvents"
+        for="Solgema.fullcalendar.browser.solgemafullcalendar_views.SolgemaFullcalendarEvents"
         ruleset="plone.content.folderView"
         />
 
