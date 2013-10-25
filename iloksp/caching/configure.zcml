@@ -13,13 +13,6 @@
     <grok:grok package="." />
     <i18n:registerTranslations directory="locales" />
 
-    <include package=".behavior"/>
-    <include package=".portlet"/>
-
-    <browser:resourceDirectory 
-        name="iloksp.caching"
-        directory="static"/>
-
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>
