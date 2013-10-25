@@ -39,15 +39,6 @@ class IntranetModerateCaching(ModerateCaching):
 
     options = ('smaxage','etags','lastModified','anonOnly')
 
-    def interceptResponse(self, rulename, response, class_=None):
-
-        # Check for cache stop request variables
-        if cacheStop(self.request, rulename):
-            return None
-
-        return None
-
-
     def modifyResponse(self, rulename, response, class_=None):
         options = lookupOptions(class_ or self.__class__, rulename)
 
