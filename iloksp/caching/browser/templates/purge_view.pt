@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+<head>
+</head>
+<body>
+    <div metal:fill-slot="content-title"></div>
+    <div metal:fill-slot="content-description"></div>
+    <div metal:fill-slot="content-core">
+        <form method="POST">
+            <div>
+                Click the button below to purge this content from caching proxies
+            </div>
+            <input name="purge" type="submit" value="Purge!"/>
+        </form>
+    </div>
+</body>
+</html>
