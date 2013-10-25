@@ -18,14 +18,14 @@ def syncPurge(obj):
 
     registry = queryUtility(IRegistry)
     if registry is None:
-        return
+        return []
 
     if not isCachePurgingEnabled(registry=registry):
-        return
+        return []
 
     purger = queryUtility(IPurger)
     if purger is None:
-        return
+        return []
 
     settings = registry.forInterface(ICachePurgingSettings, check=False)
     purged_urls = []
