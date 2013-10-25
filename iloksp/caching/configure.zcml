@@ -7,6 +7,8 @@
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:cache="http://namespaces.zope.org/cache"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="iloksp.caching">
 
     <includeDependencies package="." />
@@ -18,6 +20,18 @@
     <adapter   factory=".cachingoperation.IntranetModerateCaching"
              name="iloksp.caching.intranetModerateCaching" />
     <utility component=".cachingoperation.IntranetModerateCaching"
-             name="iloksp.caching.intranetModerateCaching" />
+        name="iloksp.caching.intranetModerateCaching" />
+
+    <cache:ruleset
+        zcml:condition="installed eea.facetednavigation"
+        for="eea.facetednavigation.browser.app.query.FacetedQueryHandler"
+        ruleset="plone.content.folderView"
+        />
+
+    <cache:ruleset
+        zcml:condition="installed eea.facetednavigation"
+        for="eea.facetednavigation.browser.app.counter.FacetedQueryCounter"
+        ruleset="plone.content.folderView"
+        />
 
 </configure>
