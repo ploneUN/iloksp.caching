@@ -37,7 +37,16 @@ class IntranetModerateCaching(ModerateCaching):
     title = u"Moderate caching for intranet"
     prefix = 'iloksp.caching.intranetModerateCaching'
 
-    options = ('smaxage','etags','lastModified','ramCache','anonOnly')
+    options = ('smaxage','etags','lastModified','anonOnly')
+
+    def interceptResponse(self, rulename, response, class_=None):
+
+        # Check for cache stop request variables
+        if cacheStop(self.request, rulename):
+            return None
+
+        return None
+
 
     def modifyResponse(self, rulename, response, class_=None):
         options = lookupOptions(class_ or self.__class__, rulename)
@@ -47,7 +56,6 @@ class IntranetModerateCaching(ModerateCaching):
         etags    = options.get('etags') or self.etags
 
         anonOnly = options.get('anonOnly', self.anonOnly)
-        ramCache = options.get('ramCache', self.ramCache)
         vary     = u'Cookie,Accept-Encoding'
 
         # Add the ``anonymousOrRandom`` etag if we are anonymous only
@@ -74,6 +82,3 @@ class IntranetModerateCaching(ModerateCaching):
 
         setCacheHeaders(self.published, self.request, response, maxage=maxage, smaxage=smaxage,
             etag=etag, lastModified=lastModified, vary=vary)
-
-        if ramCache and public:
-            cacheInRAM(self.published, self.request, response, etag=etag, lastModified=lastModified)
