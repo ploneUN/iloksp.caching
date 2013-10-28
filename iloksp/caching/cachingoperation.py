@@ -47,7 +47,7 @@ class IntranetModerateCaching(ModerateCaching):
         etags    = options.get('etags') or self.etags
 
         anonOnly = options.get('anonOnly', self.anonOnly)
-        vary     = u'X-Plone-User,Accept-Encoding'
+        vary     = u'Cookie,Accept-Encoding'
 
         # Add the ``anonymousOrRandom`` etag if we are anonymous only
         if anonOnly:
@@ -73,9 +73,3 @@ class IntranetModerateCaching(ModerateCaching):
 
         setCacheHeaders(self.published, self.request, response, maxage=maxage, smaxage=smaxage,
             etag=etag, lastModified=lastModified, vary=vary)
-
-        
-        userid = getMultiAdapter((published, self.request), 
-                IETagValue, 'userid')() or 'X-Anonymous'
-
-        response.setHeader('X-Plone-User', userid)
