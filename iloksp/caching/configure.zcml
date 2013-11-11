@@ -43,5 +43,12 @@
         ruleset="plone.content.folderView"
         />
 
+    <cache:ruleset
+        zcml:condition="installed collective.documentviewer"
+        for="collective.documentviewer.views.BlobView"
+        ruleset="plone.content.folderView"
+        />
+
+
 
 </configure>
